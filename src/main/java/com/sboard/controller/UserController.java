@@ -31,7 +31,7 @@ public class UserController {
     @Value("${spring.application.version}")
     private String appVersion;
 
-    @GetMapping("/user/login")
+    @GetMapping(value = {"/","/user/login"})
     public String login(Model model) {
         model.addAttribute(appInfo);
         return "/user/login";
