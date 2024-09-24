@@ -24,6 +24,9 @@ public class PageRequestDTO {
     @Builder.Default
     private String cate = "free";
 
+    private String type;
+    private String keyword;
+
     public Pageable getPageable(String sort) {
         return PageRequest.of(this.pg - 1, this.size, Sort.by(sort).descending());
     }

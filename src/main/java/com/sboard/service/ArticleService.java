@@ -42,12 +42,16 @@ public class ArticleService {
     public ArticleDTO selectArticle(int no) {
         return null;
     }
+
     public PageResponseDTO selectArticleAll(PageRequestDTO pageRequestDTO) {
         Pageable pageable = pageRequestDTO.getPageable("no");
 
-        //List<Article> articles = articleRepository.findAll();
-        Page<Tuple> pageArticle = articleRepository.selectArticleAllForList(pageRequestDTO, pageable);
-
+        Page<Tuple> pageArticle = null;
+        if(pageRequestDTO.getKeyword()==null){
+            pageArticle = articleRepository.selectArticleAllForList(pageRequestDTO, pageable);
+        }else{
+            pageArticle = articleRepository.selectArticleForSearch(pageRequestDTO, pageable);
+        }
         //엔티티 리스트를 DTO 리스트로 변환
         List<ArticleDTO> articleList = pageArticle.getContent().stream().map(tuple -> {
             Article article = tuple.get(0, Article.class);
