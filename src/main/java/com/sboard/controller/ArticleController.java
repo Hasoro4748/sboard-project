@@ -24,7 +24,9 @@ public class ArticleController {
     private final FileService fileService;
 
     @GetMapping("/article/list")
-    public String list() {
+    public String list(Model model) {
+        List<ArticleDTO> articles = articleService.selectArticleAll();
+        model.addAttribute("articles", articles);
         return "/article/list";
     }
 

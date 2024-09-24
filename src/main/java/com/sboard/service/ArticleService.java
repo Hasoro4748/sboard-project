@@ -38,7 +38,12 @@ public class ArticleService {
         return null;
     }
     public List<ArticleDTO> selectArticleAll(){
-        return null;
+        List<Article> articles = articleRepository.findAll();
+
+        List<ArticleDTO> articleList = articles.stream().map(entity ->
+                modelMapper.map(entity, ArticleDTO.class)
+        ).toList();
+        return articleList;
     }
     public void updateArticle(ArticleDTO articleDTO) {
 
