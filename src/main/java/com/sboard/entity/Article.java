@@ -37,6 +37,10 @@ public class Article {
     @CreationTimestamp
     private LocalDateTime rdate;
 
+    //추가필드
+    @Transient // 엔티티에 속성에서 제외시키는 어노테이션
+    private String nick;
+
     //DTO변환 메서드 대신 ModelMapper사용
 
     /*

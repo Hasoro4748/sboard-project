@@ -27,6 +27,9 @@ public class ArticleDTO {
     private String regip;
     private LocalDateTime rdate;
 
+    //추가필드
+    private String nick;
+
     // Entity 변환 메서드 대신 ModelMapper사용
 
     /*
