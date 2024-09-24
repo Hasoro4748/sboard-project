@@ -45,10 +45,8 @@ public class SecurityConfig {
                                 .logoutSuccessUrl("/user/login"));
         // 인가 설정
         http.authorizeHttpRequests(authorize -> authorize
-                                                    .requestMatchers("/").permitAll()
-                                                    .requestMatchers("/admin/**").hasRole("ADMIN")
-                                                    .requestMatchers("/manager/**").hasAnyRole("ADMIN", "MANAGER")
-                                                    .requestMatchers("/staff/**").hasAnyRole("ADMIN", "MANAGER", "STAFF")
+                                                    .requestMatchers("/article/**").authenticated()
+                                                    .requestMatchers("/user/**").permitAll()
                                                     .anyRequest().permitAll());
 
         // 기타 보안 설정

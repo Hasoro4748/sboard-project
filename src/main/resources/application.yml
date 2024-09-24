@@ -41,3 +41,8 @@ spring:
                 show_sql: true
     thymeleaf:
         prefix: classpath:/templates
+
+    servlet:
+        multipart:
+            location: uploads/
+            max-file-size: 10MB

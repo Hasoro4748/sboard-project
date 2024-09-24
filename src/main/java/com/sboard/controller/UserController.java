@@ -28,19 +28,15 @@ public class UserController {
     private final MailSendService mailSendService;
     private final AppInfo appInfo;
 
-    @Value("${spring.application.version}")
-    private String appVersion;
 
     @GetMapping(value = {"/","/user/login"})
-    public String login(Model model) {
-        model.addAttribute(appInfo);
+    public String login() {
         return "/user/login";
     }
 
     @GetMapping("/user/terms")
-    public String terms(Model model){
+    public String terms(){
         TermsDTO terms = termsService.selectTerms();
-        model.addAttribute("terms",terms);
         return "/user/terms";
     }
 
@@ -60,7 +56,7 @@ public class UserController {
         return ResponseEntity.ok(userService.selectUserByNick(nick));
     }
     @GetMapping("/user/register/checkEmail/{email}")
-    public ResponseEntity checkEmail(@PathVariable("email") String email, HttpSession session){
+    public ResponseEntity<Boolean> checkEmail(@PathVariable("email") String email, HttpSession session){
         log.info("Check email " + email);
         if(userService.selectUserByEmail(email)){
             return ResponseEntity.ok(true);

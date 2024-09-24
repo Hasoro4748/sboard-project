@@ -35,6 +35,7 @@ public class User {
     private LocalDateTime regDate;
     private LocalDateTime leaveDate;
 
+    /*
     public UserDTO toDTO(){
         return UserDTO.builder()
                 .uid(uid)
@@ -52,4 +53,5 @@ public class User {
                 .leaveDate(leaveDate)
                 .build();
     }
+     */
 }

@@ -66,7 +66,7 @@
                     <form action="#">
                         <textarea name="content">댓글내용 입력</textarea>
                         <div>
-                            <a href="#" class="btn btnCancel">취소</a>
+                            <a th:href="@{/article/list}" class="btn btnCancel">취소</a>
                             <input type="submit" value="작성완료" class="btn btnComplete"/>
                         </div>
                     </form>
@@ -76,8 +76,8 @@
         </main>
         <footer>
             <p>
-                <span class="copyright">Copyrightⓒ 김철학(개발에반하다.)</span>
-                <span class="version">v1.0.1</span>
+                <span class="copyright">Copyrightⓒ 강중원(개발에반하다.)</span>
+                <span class="version">[[${appInfo.appName}]] ver.[[${appInfo.appVersion}]]</span>
             </p>
         </footer>
     </div>    

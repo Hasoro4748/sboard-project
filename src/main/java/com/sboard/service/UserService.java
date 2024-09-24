@@ -4,6 +4,7 @@ import com.sboard.dto.UserDTO;
 import com.sboard.entity.User;
 import com.sboard.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -14,11 +15,13 @@ import java.util.Optional;
 public class UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final ModelMapper modelMapper;
+
     public void insertUser(UserDTO userDTO) {
         String encoded = passwordEncoder.encode(userDTO.getPass());
         userDTO.setPass(encoded);
 
-        User user = userDTO.toEntity();
+        User user = modelMapper.map(userDTO, User.class);
         userRepository.save(user);
     }
     public boolean selectUserByUid(String uid) {

@@ -18,7 +18,8 @@ public class UserDTO {
     private String nick;
     private String email;
     private String hp;
-    private String role;
+    @Builder.Default
+    private String role ="USER";
     private String zip;
     private String addr1;
     private String addr2;
@@ -26,6 +27,8 @@ public class UserDTO {
     private LocalDateTime regDate;
     private LocalDateTime leaveDate;
 
+    // Entity 변환 메서드 대신 ModelMapper사용
+    /*
     public User toEntity() {
         return User.builder()
                 .uid(uid)
@@ -43,4 +46,5 @@ public class UserDTO {
                 .leaveDate(leaveDate)
                 .build();
     }
+    */
 }
