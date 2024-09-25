@@ -43,8 +43,11 @@ spring:
 
     servlet:
         multipart:
-            location: uploads/
+            enabled: true
             max-file-size: 10MB
 
+upload:
+    location: uploads/
+
 ext:
-    version:${ext.version}
+    version: ${ext.version}

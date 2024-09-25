@@ -15,31 +15,41 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.Optional;
 
 @Log4j2
 @RequiredArgsConstructor
 @Service
 public class ArticleService {
+
     private final ArticleRepository articleRepository;
     private final ModelMapper modelMapper;
 
     public int insertArticle(ArticleDTO articleDTO) {
 
-        //첨부파일 객체(MultipartFile) 가져오기
-        List<MultipartFile> files = articleDTO.getFiles();
-        log.info("files size : " + files.size());
-
-        for(MultipartFile file : files) {
-            log.info("file name : " + file.getOriginalFilename());
-        }
-
-        //ModelMapper를 이용해서 DTO를 Entity로 변환
+        // ModelMapper를 이용해서 DTO를 Entity로 변환
         Article article = modelMapper.map(articleDTO, Article.class);
-        //저장
+        log.info(article);
+
+        // 저장
         Article savedArticle = articleRepository.save(article);
+
+        // 저장된 글번호 리턴
         return savedArticle.getNo();
     }
+
     public ArticleDTO selectArticle(int no) {
+
+        Optional<Article> optArticle = articleRepository.findById(no);
+
+        if(optArticle.isPresent()){
+            Article article = optArticle.get();
+            log.info(article);
+
+            ArticleDTO dto = modelMapper.map(article, ArticleDTO.class);
+            return dto;
+        }
+
         return null;
     }
 

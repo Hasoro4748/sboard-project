@@ -35,8 +35,9 @@ public class UserController {
     }
 
     @GetMapping("/user/terms")
-    public String terms(){
+    public String terms(Model model) {
         TermsDTO terms = termsService.selectTerms();
+        model.addAttribute("terms", terms);
         return "/user/terms";
     }
 

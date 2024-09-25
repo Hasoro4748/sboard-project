@@ -38,7 +38,7 @@ public class PageResponseDTO {
         this.start = this.end - 9;
 
         int last = (int) (Math.ceil(total / (double)size));
-        this.end = end > last ? last : end;
+        this.end = end > last ? last : end;     //40 > 33 ? end =33 : end = 40
         this.prev = this.start > 1;
         this.next = total > this.end * this.size;
 
